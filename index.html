@@ -11,6 +11,8 @@
         * {
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
             padding: 5px;
+            margin: 5px;
+            
         }
 
         #referencia {
@@ -22,15 +24,31 @@
 
         }
 
+        #selectores, #caja_foto {
+            background-color: aqua;
+            display: inline-block;
+        }
 
+        #selectores {
+           position: absolute; 
+        }
+
+        #caja_foto {
+            position: relative;
+            left: 200px;
+        }
+
+        label{
+            font-weight: bold;
+        }
     </style>
 </head>
 <body cz-shortcut-listen="true">
     <h1>Referencia:</h1>
     <h3 id="referencia">XM00SSNN</h3>
-    <div id="selectores">
+    <aside id="selectores">
     
-        <label for="material"> Material: 
+        <label for="material"> Material: <br>
             <select id="material" class="caja"> 
                 <option value="nada"></option>
                 <option value="ceramica">Ceramica</option>
@@ -38,7 +56,7 @@
             </select>
         </label> <br>
 
-        <label for="metrico"> Metrico: 
+        <label for="metrico"> Metrico: <br>
             <select id="metrico" class="caja"> 
                 <option value="nada"></option>
                 <option value="04">04</option>
@@ -49,7 +67,7 @@
             </select>
         </label> <br>
 
-        <label for="forma">Forma: 
+        <label for="forma">Forma:  <br>
             <select id="forma" class="caja"> 
                 <option value="PP"></option>
                 <option value="DD">Diametro Doble</option>
@@ -59,18 +77,22 @@
         </label> <br>
         
         <!-- No tiene nada pk lo llenaremos con JS en funcion del metrico escogido -->
-        <label for="diametro"> Diametro: 
+        <label for="diametro"> Diametro: <br>
             <select id="diametro" class="caja"> 
                 <option value="MM"></option>
                 
             </select>
         </label> 
 
+        
+            
+    </aside>
+    
+    <section id="caja_foto">
         <figure>
             <img id="foto" src="./FOTOS/ADC.png" alt="Foto del centrador">
         </figure>
-            
-    </div>
+    </section>
 
 
         <script>
@@ -213,16 +235,28 @@
             // PRUEBAS
             // Lo que quiero hacer es anadir una letra al final de la cadena en el 
             
-            
-            var final_bucle = 0
-            setInterval(function () { 
+            // Hay que encontrar la forma de ponerle fin a este bucle
+            /*setInterval(function () { 
                 
                 if (validar_foto.every(CheckTrue) == true) 
                 { 
                     cambairFoto()
                     console.log(final_bucle);}
-                    final_bucle += 1;
-                }, 2000);
+                    
+                }, 2000);*/
+
+
+            var metrico_X = [4.5, 4.6, 4.7, 4.8, 4.9, 5.0, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6.0]
+            
+            metrico_X.forEach(element => console.log(element));
+
+4.5
+4.6
+4.7
+4.8
+4.9
+5
+5.1
 
         </script>
 
