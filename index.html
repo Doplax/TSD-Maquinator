@@ -86,11 +86,14 @@
             
             function cambiarMaterial() // Cambia el primer digito 
             {   
+                validar_foto[0] = true
+
                 let material_value  = material.value; 
                 if (material_value == "ceramica")   {referencia = referencia.replaceAt(0,"A")}
                 if (material_value == "metal")      {referencia = referencia.replaceAt(0,"I")}
 
                 document.getElementById("referencia").innerHTML = referencia
+                
             /* Conclusiones:
             Como no en JS no existe el metodo .replaceAt() lo hemos tenido que crear en una funcion mas arriba
             Importante no sobreescribir la variable global, para ello crearemos otra solo para contener el valor
@@ -105,6 +108,7 @@
                 referencia = referencia.replaceAt(3,metrico_value[1]);
 
                 document.getElementById("referencia").innerHTML = referencia
+                validar_foto[1] = true
                 
                 /* Conclusiones:
                 0. No usar " metrico = metrico.value" en lugar de eso crearemos otra variable distinta para no machacar el objeto
@@ -121,7 +125,7 @@
                 referencia = referencia.replaceAt(5,forma_value[1])
 
                 document.getElementById("referencia").innerHTML = referencia
-
+                validar_foto[2] = true
                 // EL DIAMETRO CORTO DEBERIA ELIMINAR UN DIGITO DE LA REFERENCIA
             }
 
@@ -164,26 +168,31 @@
 
             function cambiarDiametro()
             {
-            const LEN = 6; // CUIDADO si hay cambios en el futuro
+            const LEN = 6; // CUIDADO si hay cambios en el futuro en la longitud de la referencia esto puede fallar
             let referencia_temp = referencia.slice(0,LEN)
 
             let diametro_value = $diametro.value;
             referencia = referencia_temp + diametro_value
             document.getElementById("referencia").innerHTML = referencia
-
+            validar_foto[3] = true
            
 
             }
             
             function cambairFoto()
             {
+                // Esta funcion no se ejecutarar hasta que validar_foto sean todas verdadero.
+                let imagen       = document.getElementById("foto");
+                let inicio_ruta = './FOTOS/'
+                let foto_actual = referencia[0] + referencia[4] + referencia[5] 
+                let final_ruta = ".png";
                 
-            imagen.src = './FOTOS/ADD.png'
+                imagen.src = inicio_ruta + foto_actual + final_ruta; // Con imagen.src se cambia solo, no hay que usar inner ni nada de eso
             
             }
 
             /////// VARIABLES Y MAIN
-            // FALTA EL CONTROL DE ERRORES EN CASO DE "" !!!!!!!!!
+            
             const CheckTrue = (currentValue) => currentValue == true;
 
             var referencia   = document.getElementById("referencia").innerHTML; // Para coger unicamente el texto, no el objeto
@@ -191,8 +200,8 @@
             var metrico      = document.querySelector("#metrico");
             var forma        = document.querySelector("#forma");
             var $diametro    = document.querySelector("#diametro");
-            var imagen       = document.getElementById("foto");
-
+            
+            var validar_foto = [false, false, false, false]; // Esta variable sirve para comprobar que los 4 campos han sido modificados, una vez comprobemos que han sido modificados, podremos cargar la foto
             
 
             material.addEventListener("change",cambiarMaterial); 
@@ -205,11 +214,15 @@
             // Lo que quiero hacer es anadir una letra al final de la cadena en el 
             
             
-            var validar_foto = [false, false, false, false]
-            console.log(validar_foto.every(CheckTrue));
-
-            
-            
+            var final_bucle = 0
+            setInterval(function () { 
+                
+                if (validar_foto.every(CheckTrue) == true) 
+                { 
+                    cambairFoto()
+                    console.log(final_bucle);}
+                    final_bucle += 1;
+                }, 2000);
 
         </script>
 
