@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)http://127.0.0.1:5500/index.html -->
+<html lang="en"><link type="text/css" rel="stylesheet" id="dark-mode-custom-link"><link type="text/css" rel="stylesheet" id="dark-mode-general-link"><style lang="en" type="text/css" id="dark-mode-custom-style"></style><style lang="en" type="text/css" id="dark-mode-native-style"></style><style lang="en" type="text/css" id="dark-mode-native-sheet"></style><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TORNILLATOR</title>
+
+    <link href="./TORNILLATOR_files/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <style>
+        * {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            padding: 5px;
+        }
+
+        #referencia {
+            color: rgba(75, 75, 75, 0.87);
+        }
+        .caja {
+            height: 30px;
+            width: 150px;
+        }
+
+
+    </style>
+</head>
+<body cz-shortcut-listen="true">
+    <h1>Referencia:</h1>
+    <h3 id="referencia">XM00SSNN</h3>
+    <div id="selectores">
+    
+        <label for="material"> Material: 
+            <select id="material" class="caja"> 
+                <option value="nada"></option>
+                <option value="ceramica">Ceramica</option>
+                <option value="metal">Metal</option>
+            </select>
+        </label> <br>
+
+        <label for="metrico"> Metrico: 
+            <select id="metrico" class="caja"> 
+                <option value="nada"></option>
+                <option value="04">04</option>
+                <option value="06">06</option>
+                <option value="08">08</option>
+                <option value="10">10</option>
+                <option value="12">12</option>
+            </select>
+        </label> <br>
+
+        <label for="forma">Forma: 
+            <select id="forma" class="caja"> 
+                <option value="PP"></option>
+                <option value="DD">Diametro Doble</option>
+                <option value="DS">Diametro Simple</option>
+                <option value="DC">Diametro Corto</option>
+            </select>
+        </label> <br>
+        
+        <!-- No tiene nada pk lo llenaremos con JS en funcion del metrico escogido -->
+        <label for="diametro"> Diametro: 
+            <select id="diametro" class="caja"> 
+                <option value="MM"></option>
+                
+            </select>
+        </label> 
+
+            
+        <script>
+            /////////////// FUNCIONES
+            String.prototype.replaceAt = function(index, replacement) 
+            {
+                if (index >= this.length) {
+                    return this.valueOf();
+                }
+             
+                return this.substring(0, index) + replacement + this.substring(index + 1);
+            }
+            
+            function cambiarMaterial() // Cambia el primer digito 
+            {   
+                let material_value  = material.value; 
+                if (material_value == "ceramica")   {referencia = referencia.replaceAt(0,"A")}
+                if (material_value == "metal")      {referencia = referencia.replaceAt(0,"I")}
+
+                document.getElementById("referencia").innerHTML = referencia
+            /* Conclusiones:
+            Como no en JS no existe el metodo .replaceAt() lo hemos tenido que crear en una funcion mas arriba
+            Importante no sobreescribir la variable global, para ello crearemos otra solo para contener el valor
+            */
+            }
+
+            function cambiarMetrico() //
+            {
+                let metrico_value = metrico.value
+
+                referencia = referencia.replaceAt(2,metrico_value[0]);
+                referencia = referencia.replaceAt(3,metrico_value[1]);
+
+                document.getElementById("referencia").innerHTML = referencia
+                
+                /* Conclusiones:
+                0. No usar " metrico = metrico.value" en lugar de eso crearemos otra variable distinta para no machacar el objeto
+                1. Mucho ojo con las posiciones de metrico_value_0 o 1, ya que casi la lio
+                2. En la linea getelement.. tenia puesto metrico, y eso hacia que cuando abriese el desplegable html no apareciesen resultados pk me lo estaba cargando ( lo mismo con usar el inner = referencia)
+                */
+            }
+
+            function cambiarForma() 
+            {
+                let forma_value = forma.value
+                
+                referencia = referencia.replaceAt(4,forma_value[0])
+                referencia = referencia.replaceAt(5,forma_value[1])
+
+                document.getElementById("referencia").innerHTML = referencia
+
+                // EL DIAMETRO CORTO DEBERIA ELIMINAR UN DIGITO DE LA REFERENCIA
+            }
+
+            function crearListaDiametro()
+            /*
+            1.En funcion del metrico que nos den, crearemos una lista o otra
+            2.Cuando tengamos el metrico, deberemos cargar la lista con los datos
+            3.para cargar la lista con los datos, crearemos un for, que vaya iterando y a;adiendo elementos a la lista
+
+            */
+            {
+                const metrico_4  = [4.5, 4.6, 4.7, 4.8, 4.9, 5.0, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6.0]
+                const metrico_6  = [6.5, 6.6, 6.7, 6.8, 6.9, 7, 7.1, 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 7.8, 7.9, 8, 8.1, 8.2, 8.3, 8.4, 8.5]
+                const metrico_8  = [8.5, 8.6, 8.7, 8.8, 8.9, 9, 9.1, 9.2, 9.3, 9.4, 9.5, 9.6, 9.7, 9.8, 9.9, 10, 10.1, 10.2, 10.3, 10.4, 10.5, 10.6, 10.7, 10.8, 10.9, 11]
+                const metrico_10 = [11, 11.1, 11.2, 11.3, 11.4, 11.5, 11.6, 11.7, 11.8, 11.9, 12, 12.1, 12.2, 12.3, 12.4, 12.5, 12.6, 12.7, 12.8, 12.9, 13]
+                const metrico_12 = [13, 13.1, 13.2, 13.3, 13.4, 13.5, 13.6, 13.7, 13.8, 13.9, 14, 14.1, 14.2, 14.3, 14.4, 14.5, 14.6, 14.7, 14.8, 14.9, 15]
+
+                let metrico_value = metrico.value;
+
+                if (metrico_value == "04") { anadirOpcionesDiametro(metrico_4)}
+                if (metrico_value == "06") { anadirOpcionesDiametro(metrico_6)}
+                if (metrico_value == "08") { anadirOpcionesDiametro(metrico_8)}
+                if (metrico_value == "10") { anadirOpcionesDiametro(metrico_10)}
+                if (metrico_value == "12") { anadirOpcionesDiametro(metrico_12)}
+            }
+
+            function anadirOpcionesDiametro(lista) 
+            {
+                //NOTA! Esta funcion esta diseñada para ser usada dentro de cambiarDiametro()
+                for (i in lista){
+
+                    let temp = String(lista[i]); 
+
+                    var option = document.createElement("option") 
+                    option.value = temp.replace(".",""); 
+                    option.text = temp; 
+                    $diametro.appendChild(option); 
+                }
+            }
+
+            function cambiarDiametro(){
+            
+            const LEN = 6; // CUIDADO si hay cambios en el futuro
+            let referencia_temp = referencia.slice(0,LEN)
+
+            let diametro_value = $diametro.value;
+            referencia = referencia_temp + diametro_value
+            document.getElementById("referencia").innerHTML = referencia
+
+           
+
+            }
+            /////// VARIABLES Y MAIN
+            // FALTA EL CONTROL DE ERRORES EN CASO DE "" !!!!!!!!!
+            var referencia   = document.getElementById("referencia").innerHTML; // Para coger unicamente el texto, no el objeto
+            var material     = document.querySelector("#material");
+            var metrico      = document.querySelector("#metrico");
+            var forma        = document.querySelector("#forma");
+            var $diametro    = document.querySelector("#diametro");
+            
+
+            material.addEventListener("change",cambiarMaterial); 
+            
+            metrico.addEventListener("change",cambiarMetrico);
+            metrico.addEventListener("change",crearListaDiametro); // Esta linea es la que se encarga de crear las opciones en el desplegable diametro
+
+            forma.addEventListener("change",cambiarForma);
+            
+            $diametro.addEventListener("change",cambiarDiametro); // Esta linea cambiara los digitos que hay en la referencia
+
+            // PRUEBAS
+            // Lo que quiero hacer es anadir una letra al final de la cadena en el 
+            
+            
+            
+
+        </script>
+<!-- Code injected by live-server -->
+<script type="text/javascript">
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+
+</div></body></html>
