@@ -22,8 +22,8 @@
 
         }
 
-        #selectores, #caja_foto {
-            background-color: aqua;
+        #selectores, #caja-foto {
+            
             display: inline-block;
         }
 
@@ -31,7 +31,8 @@
            position: absolute; 
         }
 
-        #caja_foto {
+        #caja-foto {
+            text-align: center;
             position: relative;
             left: 200px;
         }
@@ -39,64 +40,96 @@
         label{
             font-weight: bold;
         }
+
+        #cota-inferior {
+            border-top: solid black;             
+            border-width: 0.2em;
+            
+            width: 50%;
+
+            text-align: center;
+            position: absolute;
+
+            background-color: aqua;
+
+            right: 18%;
+
+            
+        }
+
+        #cota-lateral {
+            border-top: solid black;             
+            
+            width: 120%;
+
+            text-align: center;
+            position: absolute;
+            transform: rotate(-90deg);
+            top: 40%;
+            right: -65%;
+        }
     </style>
 </head>
 <body>
-    <h1>Referencia:</h1>
-    <h3 id="referencia">XM00SSNN</h3>
-    <aside id="selectores">
-    
-        <label for="material"> Material: <br>
-            <select id="material" class="caja"> 
-                <option value="nada"></option>
-                <option value="ceramica">Ceramica</option>
-                <option value="metal">Metal</option>
-            </select>
-        </label> <br>
-
-        <label for="metrico"> Metrico: <br>
-            <select id="metrico" class="caja"> 
-                <option value="nada"></option>
-                <option value="04">04</option>
-                <option value="06">06</option>
-                <option value="08">08</option>
-                <option value="10">10</option>
-                <option value="12">12</option>
-            </select>
-        </label> <br>
-
-        <label for="forma">Forma:  <br>
-            <select id="forma" class="caja"> 
-                <option value="PP"></option>
-                <option value="DD">Diametro Doble</option>
-                <option value="DS">Diametro Simple</option>
-                <option value="DC">Diametro Corto</option>
-            </select>
-        </label> <br>
+    <div id="main_content">
+        <h1>Referencia:</h1>
+        <h3 id="referencia">XM00SSNN</h3>
+        <div id="selectores">
         
-        <!-- No tiene nada pk lo llenaremos con JS en funcion del metrico escogido -->
-        <label for="diametro"> Diametro: <br>
-            <select id="diametro" class="caja"> 
-                <option value="MM"></option>
-                
-            </select>
-        </label> 
+            <label for="material"> Material: <br>
+                <select id="material" class="caja"> 
+                    <option value="nada"></option>
+                    <option value="ceramica">Ceramica</option>
+                    <option value="metal">Metal</option>
+                </select>
+            </label> <br>
 
-        
+
+            <label for="forma">Forma:  <br>
+                <select id="forma" class="caja"> 
+                    <option value="PP"></option>
+                    <option value="DD">Diametro Doble</option>
+                    <option value="DS">Diametro Simple</option>
+                    <option value="DC">Diametro Corto</option>
+                </select>
+            </label> <br>
+
+            <label for="metrico"> Metrico: <br>
+                <select id="metrico" class="caja"> 
+                    <option value="nada"></option>
+                    <option value="04">04</option>
+                    <option value="06">06</option>
+                    <option value="08">08</option>
+                    <option value="10">10</option>
+                    <option value="12">12</option>
+                </select>
+            </label> <br>
             
-    </aside>
-    
-    <section id="caja_foto">
-        <figure>
-            <img id="foto" src="./FOTOS/ADC.png" alt="Foto del centrador">
-        </figure>
-    </section>
+            <!-- No tiene nada pk lo llenaremos con JS en funcion del metrico correspondiendo -->
+            <label for="diametro"> Diametro: <br>
+                <select id="diametro" class="caja"> 
+                    <option value="MM"></option>
+                    
+                </select>
+            </label> <br> 
+            
+                
+        </div>
+        
+        <div id="caja-foto">
+            <figure id="caja-foto_figure">
+                <img id="foto" src="fotos-referenciator-centradores/centradores-400x827/ADC.png" width="100">
+                
+                
 
-
+            </figure>
+        </div>
+    </div>
         <script>
             /////////////// FUNCIONES
             String.prototype.replaceAt = function(index, replacement) 
             {
+                //En JS no existe el metodo .replaceAt() como tal, por eso estamos creando este prototipo.
                 if (index >= this.length) {
                     return this.valueOf();
                 }
@@ -114,10 +147,7 @@
 
                 document.getElementById("referencia").innerHTML = referencia
                 
-            /* Conclusiones:
-            Como no en JS no existe el metodo .replaceAt() lo hemos tenido que crear en una funcion mas arriba
-            Importante no sobreescribir la variable global, para ello crearemos otra solo para contener el valor
-            */
+           
             }
 
             function cambiarMetrico() //
@@ -150,21 +180,20 @@
             }
 
             function crearListaDiametro()
-            /*
-            1.En funcion del metrico que nos den, crearemos una lista o otra
-            2.Cuando tengamos el metrico, deberemos cargar la lista con los datos
-            3.para cargar la lista con los datos, crearemos un for, que vaya iterando y a;adiendo elementos a la lista
-
-            */
+            //1.Cuando el usuario escoga el metrico, deberemos cargar la lista correspondiente
             {
+                let metrico_value = metrico.value;
+
                 const metrico_4  = [4.5, 4.6, 4.7, 4.8, 4.9, 5.0, 5.1, 5.2, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 6.0]
                 const metrico_6  = [6.5, 6.6, 6.7, 6.8, 6.9, 7, 7.1, 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 7.8, 7.9, 8, 8.1, 8.2, 8.3, 8.4, 8.5]
                 const metrico_8  = [8.5, 8.6, 8.7, 8.8, 8.9, 9, 9.1, 9.2, 9.3, 9.4, 9.5, 9.6, 9.7, 9.8, 9.9, 10, 10.1, 10.2, 10.3, 10.4, 10.5, 10.6, 10.7, 10.8, 10.9, 11]
                 const metrico_10 = [11, 11.1, 11.2, 11.3, 11.4, 11.5, 11.6, 11.7, 11.8, 11.9, 12, 12.1, 12.2, 12.3, 12.4, 12.5, 12.6, 12.7, 12.8, 12.9, 13]
                 const metrico_12 = [13, 13.1, 13.2, 13.3, 13.4, 13.5, 13.6, 13.7, 13.8, 13.9, 14, 14.1, 14.2, 14.3, 14.4, 14.5, 14.6, 14.7, 14.8, 14.9, 15]
 
-                let metrico_value = metrico.value;
+                
 
+
+            // 2.En funcion del metrico que nos den, crearemos una lista o otra
                 if (metrico_value == "04") { anadirOpcionesDiametro(metrico_4)}
                 if (metrico_value == "06") { anadirOpcionesDiametro(metrico_6)}
                 if (metrico_value == "08") { anadirOpcionesDiametro(metrico_8)}
@@ -174,7 +203,10 @@
 
             function anadirOpcionesDiametro(lista) 
             {
-                //NOTA! Esta funcion esta diseñada para ser usada dentro de cambiarDiametro()
+                //¡¡AVISO!!: Esta funcion esta diseñada para ser usada dentro de cambiarDiametro()
+                while ($diametro.firstChild) { $diametro.removeChild($diametro.firstChild);} // Esta parte del codigo se encarga de limpiar la lista antesde de añadir los elementos para evitar que se vayan acumulando los elementos en la lista
+                
+                //Para cargar la lista con los datos, crearemos un for, que vaya iterando y añadiendo elementos a la lista.
                 for (i in lista){
 
                     let temp = String(lista[i]); 
@@ -201,15 +233,57 @@
             
             function cambairFoto()
             {
-                // Esta funcion no se ejecutarar hasta que validar_foto sean todas verdadero.
+                // Esta funcion no se ejecutarar hasta que el array "validar_foto" sean todas verdadero.
                 let imagen       = document.getElementById("foto");
-                let inicio_ruta = './FOTOS/'
+                let inicio_ruta = './fotos-referenciator-centradores/centradores-400x827/'
                 let foto_actual = referencia[0] + referencia[4] + referencia[5] 
                 let final_ruta = ".png";
                 
                 imagen.src = inicio_ruta + foto_actual + final_ruta; // Con imagen.src se cambia solo, no hay que usar inner ni nada de eso
-            
+                
+                
+
             }
+
+            function anadirCota() {
+                /* ¡¡AVISO!!     : Esta funcion esta pensada para ir dentro de cambiarFoto()  
+                FUNCIONAMIENTO: Una vez haya cargado la foto, deberemos cargar las cotas, para ello lo que haremos es cargar 2 <div>, cada uno con un ID unico para vincularlo con el estilo de CSS -> IDs (cota-inferior, cota-lateral). 
+                */
+                
+
+                let cajaImagen          =  document.getElementById("caja-foto_figure");  // Creamos la variable a la que luego le anadiremos los DIVs con appendChild
+                
+                // COTA INFERIOR
+                let cotaInferior    =   document.createElement("div");
+                cotaInferior.id         =  "cota-inferior";
+                cotaInferior.innerHTML  =  "hola" // <div> Para poner el texto que va aqui </div> 
+                cajaImagen.appendChild(cotaInferior);
+                
+                // COTA LATERAL
+                let cotaLateral    =   document.createElement("div");
+                cotaLateral.id         =  "cota-lateral";
+                cotaLateral.innerHTML  =  "hola" 
+                cajaImagen.appendChild(cotaLateral);
+                
+                
+                
+            
+
+                
+
+
+                
+            
+                
+
+                
+
+
+
+                //let cotaLateral  = 
+            }
+
+
 
             /////// VARIABLES Y MAIN
             const CheckTrue = (currentValue) => currentValue == true; // Nos sirve para comprobar que todos los elementos del array sean True
@@ -229,7 +303,8 @@
             $diametro.addEventListener("change",cambiarDiametro); // Esta linea cambiara los digitos que hay en la referencia
 
         
-            let final_bucle = 60; // El contador ira restando hasta llegar a 0
+            let final_bucle = 60; // El contador restara hasta llegar a 0
+            
             // Estoy usando esta funcion en vez de un while, para que el servidor no se vuelva loco en comprobando los parametros, de esta forma lo hara cada 2 segundos y parara cuando haya llegado a X
             let comprobarFoto = setInterval(function () 
                     { 
@@ -244,13 +319,12 @@
                             }
                     }, 2000);
             
-            
+            anadirCota();
 
 
             // PRUEBAS
-            
-            
 
+            
         </script>
 </body>
 </html>
