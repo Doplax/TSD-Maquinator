@@ -1,0 +1,67 @@
+* {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 5px;
+    margin: 5px;
+    
+    
+}
+
+#referencia {
+    color: rgba(75, 75, 75, 0.87);
+    position: absolute;
+    top: -5%;
+    left: 118%;
+    
+}
+.caja {
+    height: 30px;
+    width: 150px;
+
+}
+
+#selectores, #caja-foto {
+    
+    display: inline-block;
+}
+
+#selectores {
+   position: absolute; 
+}
+
+#caja-foto {
+    text-align: center;
+    position: relative;
+    left: 200px;
+}
+
+#cota-inferior {
+    border-top: solid black;             
+    border-width: 0.15em;
+    
+    width: 50%;
+
+    text-align: center;
+    position: absolute;
+
+    right: 18%;
+
+    
+}
+
+#cota-lateral {
+    border-top: solid black;             
+    border-width: 0.15em;
+    
+    width: 130%;
+
+    text-align: center;
+    position: absolute;
+    transform: rotate(-90deg);
+    top: 42%;
+    right: -65%;
+}
+
+
+label{
+    font-weight: bold;
+}
