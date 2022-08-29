@@ -22,10 +22,9 @@ function cambiarMaterial() // Cambia el primer digito
 
 }
 
-function cambiarMetrico() //
-{
+function cambiarMetrico(){
+    
     let metrico_value = metrico.value
-
     referencia = referencia.replaceAt(2,metrico_value[0]); // 2 es la posicion del array de referenica y [0] es la letra con la que sustituiremos la referencia
     referencia = referencia.replaceAt(3,metrico_value[1]);
 
@@ -48,7 +47,7 @@ function cambiarForma()
 
     document.getElementById("referencia").innerHTML = referencia
     validar_foto[2] = true
-    // EL DIAMETRO CORTO DEBERIA ELIMINAR UN DIGITO DE LA REFERENCIA
+    
 }
 
 function crearListaDiametro()
@@ -71,25 +70,6 @@ function crearListaDiametro()
     if (metrico_value == "08") { anadirOpcionesDiametro(metrico_8)}
     if (metrico_value == "10") { anadirOpcionesDiametro(metrico_10)}
     if (metrico_value == "12") { anadirOpcionesDiametro(metrico_12)}
-}
-
-function anadirOpcionesDiametro(lista) 
-{
-    /*
-    ¡¡AVISO!!: Esta funcion esta diseñada para ser usada dentro de cambiarDiametro()
-    NOTA: He estado pensando en si hace falta esta funcion, pero creo que para no repetir codigo en los IFs de la funcion craerListaDiametro(). de todas formas, habra que mirar de refactorizar el codigo en el futuro
-    */
-    while ($diametro.firstChild) { $diametro.removeChild($diametro.firstChild);} // Para limpiar la lista antesde de añadir los elementos para evitar que se vayan acumulando los elementos en la lista
-    
-    for (i in lista){ 
-        //Para cargar la lista con los datos, iterara tantas veces como elementos tenga la lista
-        let temp = String(lista[i]); 
-
-        var option = document.createElement("option") 
-        option.value = temp.replace(".",""); 
-        option.text = temp; 
-        $diametro.appendChild(option); 
-    }
 }
 
 function cambiarDiametro()
@@ -122,12 +102,35 @@ function cambairFoto()
 
 }
 
-function anadirCota() 
+function cambiarColorReferencia(){
+    let x = document.getElementById("referencia");
+    x.style.color = "#000000";
+}
+
+function anadirOpcionesDiametro(lista)  // Sub-Function of: cambiarDiametro()
 {
-    /* ¡¡AVISO!!     : Esta funcion esta pensada para ir dentro de cambiarFoto()  
+    /*
+    ¡¡AVISO!!: Esta funcion esta diseñada para ser usada dentro de cambiarDiametro()
+    NOTA: He estado pensando en si hace falta esta funcion, pero creo que para no repetir codigo en los IFs de la funcion craerListaDiametro(). de todas formas, habra que mirar de refactorizar el codigo en el futuro
+    */
+    while ($diametro.firstChild) { $diametro.removeChild($diametro.firstChild);} // Para limpiar la lista antesde de añadir los elementos para evitar que se vayan acumulando los elementos en la lista
+    
+    for (i in lista){ 
+        //Para cargar la lista con los datos, iterara tantas veces como elementos tenga la lista
+        let temp = String(lista[i]); 
+
+        var option = document.createElement("option") 
+        option.value = temp.replace(".",""); 
+        option.text = temp; 
+        $diametro.appendChild(option); 
+    }
+}
+
+function anadirCota()   // Sub-Function of: cambiarFoto()
+{
+    /* 
     FUNCIONAMIENTO: La funcion comprobara si los elementos a crear existen, si existen, pasara sin hacer nada
     Una vez haya cargado la foto, deberemos cargar las cotas, para ello lo que haremos es cargar 2 <div>, cada uno con un ID unico para vincularlo con el estilo de CSS -> IDs (cota-inferior, cota-lateral).
-     
     */
     temp = document.getElementById("cota-inferior");
     if (temp == null) {
@@ -150,7 +153,7 @@ function anadirCota()
 }
 }
 
-function cambiarCota(){
+function cambiarCota(){ // Sub-Function of: cambiarFoto()
     m = metrico.value;
     f = forma.value;
 
@@ -208,7 +211,7 @@ var metrico      = document.querySelector("#metrico");
 var forma        = document.querySelector("#forma");
 var $diametro    = document.querySelector("#diametro");
 
-var validar_foto = [false, false, false, false]; // Esta variable sirve para comprobar que los 4 campos han sido modificados, una vez comprobemos que han sido modificados, podremos cargar la foto
+var validar_foto = [false, false, false, false]; // Compruba que los 4 campos han sido modificados, una vez comprobemos que han sido modificados, podremos cargar la foto
 
 material.addEventListener("change",cambiarMaterial); 
 metrico.addEventListener("change",cambiarMetrico);
@@ -219,13 +222,15 @@ $diametro.addEventListener("change",cambiarDiametro); // Esta linea cambiara los
 
 let final_bucle = 120; // El contador restara hasta llegar a 0
 
-//anadirCota()
-// Estoy usando esta funcion en vez de un while, para que el servidor no se vuelva loco en comprobando los parametros, de esta forma lo hara cada 2 segundos y parara cuando haya llegado a X
+
+// Estoy usando esta funcion en vez de un while, para que el servidor no se vuelva loco en comprobando los cambios
 let comprobarFoto = setInterval(function () 
         { 
-            if (validar_foto.every(CheckTrue) == true) 
+            if (validar_foto.every(CheckTrue) == true) //Esta funcion la hemos creado arriba donde las variables
             { 
                 cambairFoto()
+                cambiarColorReferencia()
+                
                 console.log(final_bucle);}
                 final_bucle -= 1;
                 if (final_bucle == 0) 
@@ -238,8 +243,7 @@ let comprobarFoto = setInterval(function ()
 
 
 // PRUEBAS
-//let x = document.getElementById("referencia");
-//x.style.color = '#FF00FF'
+
 
 //const jData = import("./colores.json");
 
