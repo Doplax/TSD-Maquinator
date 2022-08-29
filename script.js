@@ -61,10 +61,7 @@ function crearListaDiametro()
     const metrico_10 = ["",11, 11.1, 11.2, 11.3, 11.4, 11.5, 11.6, 11.7, 11.8, 11.9, 12, 12.1, 12.2, 12.3, 12.4, 12.5, 12.6, 12.7, 12.8, 12.9, 13]
     const metrico_12 = ["",13, 13.1, 13.2, 13.3, 13.4, 13.5, 13.6, 13.7, 13.8, 13.9, 14, 14.1, 14.2, 14.3, 14.4, 14.5, 14.6, 14.7, 14.8, 14.9, 15]
 
-    
-
-
-// 2.En funcion del metrico que nos den, crearemos una lista o otra llamando a la funcion que introducira los datos en el desplegable
+    // 2.En funcion del metrico que nos den, crearemos una lista o otra llamando a la funcion que introducira los datos en el desplegable
     if (metrico_value == "04") { anadirOpcionesDiametro(metrico_4)}
     if (metrico_value == "06") { anadirOpcionesDiametro(metrico_6)}
     if (metrico_value == "08") { anadirOpcionesDiametro(metrico_8)}
@@ -74,13 +71,13 @@ function crearListaDiametro()
 
 function cambiarDiametro()
 {
-const LEN = 6; // CUIDADO si hay cambios en el futuro en la longitud de la referencia esto puede fallar
-let referencia_temp = referencia.slice(0,LEN)
+    const LEN = 6; // CUIDADO si hay cambios en el futuro en la longitud de la referencia esto puede fallar
+    let referencia_temp = referencia.slice(0,LEN)
 
-let diametro_value = $diametro.value;
-referencia = referencia_temp + diametro_value
-document.getElementById("referencia").innerHTML = referencia
-validar_foto[3] = true
+    let diametro_value = $diametro.value;
+    referencia = referencia_temp + diametro_value
+    document.getElementById("referencia").innerHTML = referencia
+    validar_foto[3] = true
 
 
 }
