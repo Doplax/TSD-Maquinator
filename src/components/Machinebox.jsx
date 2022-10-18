@@ -14,17 +14,20 @@ export default function Machinebox(prop){
         )
 
     } else {
+        // Cargar 
         if (prop.foto === undefined) {
             return (
                 <div>
                     <div>
-                    Ø {prop.nombre}  
+                    Ø {prop.nombre} <br/> {prop.inclinacion}
+                    
                     </div>
                 </div> )
 
 
         } else {
             return (
+                // Cargar Foto
                 <div className="Machinebox_div">
                     <div className="tooltip">{prop.nombre}
                         <figure className="tooltiptext">
