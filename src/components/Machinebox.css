@@ -1,0 +1,59 @@
+/* 
+Documentacion:
+  https://www.w3schools.com/css/css_tooltip.asp
+*/
+
+.Machinebox_div {
+  font-size: 62.5%;
+}
+
+/* Para esconder la foto y mostrarla */
+.tooltip .tooltiptext {
+  display: none;
+  visibility: hidden;
+}
+
+.tooltip:hover .tooltiptext {
+  display: inline-block;
+  visibility: visible;
+}
+
+
+.tooltip {
+  font-size: 1rem;
+  position: relative;
+  /* text-decoration: dotted underline; */
+  border-bottom: 0.16rem dotted;
+  display: inline-block;
+  background-color: rgba(255, 0, 0, 0.13);
+}
+
+.tooltip .tooltiptext {
+  position: absolute;
+  border: solid black;
+  padding:  0.05rem 0.10rem 0.05rem;
+  color: black;
+  background-color: white;
+  border-radius: 0.1rem;
+  z-index: 1;
+
+  text-align: center;
+  top: 40%;
+  left: -1.5rem;
+}
+
+.tooltip .tooltiptext img {
+  position: relative;
+  height: 10rem;
+  width: auto;
+}
+
+figure::before {
+  content: "";
+  border: 0.7rem solid;
+  border-color: transparent transparent black transparent ;
+  position: absolute;
+  bottom: 100%;
+  left: 0%;
+
+}
