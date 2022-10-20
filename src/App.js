@@ -24,7 +24,7 @@ function App() {
       <div className="table_container">
         <table>
           <tr>         
-            <th>p</th>
+            <th></th>
             <th><img src={require('./img/electrodos/1.png')} alt="Logo" /> </th>
             <th><img src={require('./img/electrodos/2.png')} alt="Logo" /> </th>
             <th><img src={require('./img/electrodos/3.png')} alt="Logo" /> </th>
