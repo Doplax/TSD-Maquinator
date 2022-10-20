@@ -1,35 +1,61 @@
+:root {
+  --main-bg-color: rgb(34, 114, 139);
+}
+*{
+  border-spacing: 0;
+}
+
 .App {
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-  }
-  
-  .table_container {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-  
-  }
-  
-  table { 
-    border: 2px solid rgb(34, 114, 139);
-    border-radius: 1rem;
-    width: calc(100%  - 20%);
-    height: 22rem;
-    background-color: whitesmoke;
-    
-  
-  }
-  th {
-    background-color: rgb(199, 199, 199,0);
-  }
-  
-  td {
-    text-align: center;
-  }
-  
-  img {
-    height: 6rem;
-    width: 6rem;
-  }
-  
+  /* display: flex; */
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.table_container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+
+}
+
+
+th {
+  background-color: rgb(199, 199, 199,0);
+}
+
+td {
+  text-align: center;
+
+}
+
+
+
+img {
+  height: 6rem;
+  width: 6rem;
+}
+td{
+  border-top: 1px solid;  
+}
+
+table { 
+  border: 0.2rem solid var(--main-bg-color);
+  width: 1200px;
+  height: 22rem;
+  background-color: whitesmoke;
+  border-radius: 1rem;
+}
+
+
+.column-left {
+/* Text */
+  font-weight: bold;
+
+
+  padding-right: 0.9rem;
+
+  background-color:  rgb(34, 114, 139);
+  text-align: right;
+  color: aliceblue;
+}
+

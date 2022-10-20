@@ -31,7 +31,7 @@ export default function Machinebox(prop){
                 <div className="Machinebox_div">
                     <div className="tooltip">{prop.nombre}
                         <figure className="tooltiptext">
-                            <img  alt="imagen" src={require(`./img/${prop.foto}.png`)}></img>
+                            <img  alt="imagen" src={require(`./img/${prop.foto}.PNG`)}></img>
                         </figure>
                     </div>
                 </div>

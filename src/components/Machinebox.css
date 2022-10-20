@@ -22,7 +22,7 @@ Documentacion:
 .tooltip {
   font-size: 1rem;
   position: relative;
-  /* text-decoration: dotted underline; */
+  /* text-decoration: dotted underline;  Otra forma de  hacerlo*/ 
   border-bottom: 0.16rem dotted;
   display: inline-block;
 
@@ -30,13 +30,12 @@ Documentacion:
 
 .tooltip .tooltiptext {
   position: absolute;
-  border: solid black;
+  border: 0.2rem solid var(--main-bg-color);
   padding:  0.05rem 0.10rem 0.05rem;
   color: black;
   background-color: white;
-  border-radius: 0.1rem;
+  border-radius: 0.5rem;
   z-index: 1;
-
   text-align: center;
   top: 40%;
   left: -1.5rem;
@@ -44,17 +43,18 @@ Documentacion:
 
 .tooltip .tooltiptext img {
   position: relative;
-  height: 10rem;
+  height: 15rem;
   width: auto;
 }
 
+
+/* La flechita que se ve encima de la caja */
 figure::before {
   content: "";
-  border: 0.7rem solid;
-  border-color: transparent transparent black transparent ;
+  border: 0.5rem solid;
+  border-color: transparent transparent var(--main-bg-color) transparent ;
   position: absolute;
   bottom: 100%;
   left: 0%;
-
 }
 

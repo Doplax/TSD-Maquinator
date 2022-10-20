@@ -23,21 +23,24 @@ function App() {
 
       <div className="table_container">
         <table>
-          <tr>         
-            <th></th>
-            <th><img src={require('./img/electrodos/1.png')} alt="Logo" /> </th>
-            <th><img src={require('./img/electrodos/2.png')} alt="Logo" /> </th>
-            <th><img src={require('./img/electrodos/3.png')} alt="Logo" /> </th>
-            <th><img src={require('./img/electrodos/4.png')} alt="Logo" /> </th>
-            <th><img src={require('./img/electrodos/5.png')} alt="Logo" /> </th>
-            <th><img src={require('./img/electrodos/6.png')} alt="Logo" /> </th>
-            <th><img src={require('./img/electrodos/7.png')} alt="Logo" /> </th>
-            <th><img src={require('./img/electrodos/8.png')} alt="Logo" /> </th>
-            <th><img src={require('./img/electrodos/9.png')} alt="Logo" /> </th>
-          </tr>
-          
+          <thead>
+            <tr>         
+              <th></th>
+              <th><img src={require('./img/electrodos/1.png')} alt="Logo" /> </th>
+              <th><img src={require('./img/electrodos/2.png')} alt="Logo" /> </th>
+              <th><img src={require('./img/electrodos/3.png')} alt="Logo" /> </th>
+              <th><img src={require('./img/electrodos/4.png')} alt="Logo" /> </th>
+              <th><img src={require('./img/electrodos/5.png')} alt="Logo" /> </th>
+              <th><img src={require('./img/electrodos/6.png')} alt="Logo" /> </th>
+              <th><img src={require('./img/electrodos/7.png')} alt="Logo" /> </th>
+              <th><img src={require('./img/electrodos/8.png')} alt="Logo" /> </th>
+              <th><img src={require('./img/electrodos/9.png')} alt="Logo" /> </th>
+            </tr>
+          </thead>
+          <tbody>
           {data.map((val, key) => {
             return ( 
+              
               <tr key={key}>
                 <td className='column-left'><Machinebox nombre={val.id} inclinacion={val.inclinacion}/></td>
                 <td><Machinebox nombre={val.column1}  foto={val.id}/></td>
@@ -53,6 +56,7 @@ function App() {
               
             )
           })}
+          </tbody>
         </table> 
       </div>
       
