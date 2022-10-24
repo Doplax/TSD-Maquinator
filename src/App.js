@@ -58,8 +58,20 @@ function App() {
           })}
           </tbody>
         </table> 
+      
+
       </div>
       
+
+      <div className='contenedor_conos'>
+          {data.map((Element) => {
+            return(
+              <img  alt="imagen" src={require(`./img/conos/${Element.id}.png`)}></img>
+          )})}
+     
+          
+          
+      </div>
 
     </div>
   );
@@ -67,4 +79,6 @@ function App() {
 
 export default App;
 
+// Pruebas
 
+// data.map(Element => console.log(Element.id))

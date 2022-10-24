@@ -6,7 +6,7 @@
 }
 
 .App {
-  /* display: flex; */
+  display: flex;
   flex-direction: column;
   padding: 1rem;
 }
@@ -59,3 +59,14 @@ table {
   color: aliceblue;
 }
 
+
+.contenedor_conos {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.contenedor_conos img{
+height: 250px;
+width: auto;
+}
