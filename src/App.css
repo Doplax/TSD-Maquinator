@@ -57,6 +57,7 @@ table {
   background-color:  rgb(34, 114, 139);
   text-align: right;
   color: aliceblue;
+  border-top: 2px solid aliceblue;
 }
 
 

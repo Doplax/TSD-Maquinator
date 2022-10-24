@@ -68,7 +68,7 @@ function App() {
             return(
               <figure>
                   <img  alt="imagen" src={require(`./img/conos/${Element.id}.png`)}></img>
-                  <figcaption>{`Metrico: ${Element.id}`}<br/>{`Inclinacion: ${Element.inclinacion}`}</figcaption>
+                  <figcaption>{`Zona de clavado: ${Element.id}`}<br/>{`Inclinacion: ${Element.inclinacion}`}</figcaption>
               </figure>
           )})}
      
