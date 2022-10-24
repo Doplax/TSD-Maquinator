@@ -66,7 +66,10 @@ function App() {
       <div className='contenedor_conos'>
           {data.map((Element) => {
             return(
-              <img  alt="imagen" src={require(`./img/conos/${Element.id}.png`)}></img>
+              <figure>
+                  <img  alt="imagen" src={require(`./img/conos/${Element.id}.png`)}></img>
+                  <figcaption>{`Metrico: ${Element.id}`}<br/>{`Inclinacion: ${Element.inclinacion}`}</figcaption>
+              </figure>
           )})}
      
           
