@@ -1,9 +1,7 @@
 :root {
   --main-bg-color: rgb(34, 114, 139);
 }
-*{
-  border-spacing: 0;
-}
+
 
 .App {
   display: flex;
@@ -15,61 +13,57 @@
   display: flex;
   justify-content: center;
   text-align: center;
-
 }
 
-
-th {
-  background-color: rgb(199, 199, 199,0);
+table {
+  border: 0.2rem solid var(--main-bg-color);
+  width: auto;
+  height: auto;
+  background-color: whitesmoke;
+  border-spacing: 0;
+  border-radius: 10px; /* aquí se redondearán los bordes de la tabla */
 }
 
-td {
-  text-align: center;
-
-}
+/* bordes */
 
 
 
-img {
-  height: 6rem;
+/* THEAD */
+.table_container table thead th img {
+  height: rem;
   width: 6rem;
 }
+
+/* TBODY */
 td{
-  border-top: 1px solid var(--main-bg-color);  
+  border-top: 1px solid black;  
 }
 
-table { 
-  border: 0.2rem solid var(--main-bg-color);
-  width: 1200px;
-  height: 22rem;
-  background-color: whitesmoke;
-  border-radius: 1rem;
-}
-
-
-.column-left {
-/* Text */
+tbody tr td:nth-child(1) {
+  /* Primera columna horizontal de la tabla */
   font-weight: bold;
-
-
   padding-right: 0.9rem;
-
-  background-color:  rgb(34, 114, 139);
   text-align: right;
+  background-color: var(--main-bg-color);
   color: aliceblue;
-  border-top: 2px solid aliceblue;
+}
+
+tbody tr td:nth-child(1) {
+  
 }
 
 
+/* ZONA FOTO CONOS (parte de abajo de la página) */
 .contenedor_conos {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   margin-top: 2rem;
 }
 
 .contenedor_conos img {
-height: 200px;
-width: auto;
+  height: 200px;
+  width: auto;
 }
 
 .contenedor_conos figure figcaption {

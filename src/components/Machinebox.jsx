@@ -8,13 +8,9 @@ import './Machinebox.css'
 
 export default function Machinebox(prop){
     
-    if (prop.nombre === "-") {
-        return (
-            <> - </>
-        )
-
-    } else {
-        // Cargar 
+    if (prop.nombre === "-") {return (<> - </>)} 
+    
+    else {
         if (prop.foto === undefined) {
             return (
                 <div>
@@ -23,8 +19,6 @@ export default function Machinebox(prop){
                     
                     </div>
                 </div> )
-
-
         } else {
             return (
                 // Cargar Foto
@@ -35,8 +29,9 @@ export default function Machinebox(prop){
                         </figure>
                     </div>
                 </div>
-       )}
-}}
+        )}
+    }
+}
 
 
 
